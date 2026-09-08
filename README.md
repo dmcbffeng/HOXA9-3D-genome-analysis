@@ -92,3 +92,9 @@ constants at the top of each script (they are all grouped there) and point them 
 GEO/Zenodo downloads.
 
 `.hic` files are not redistributed here; `hg19.chrom.sizes` is available from UCSC.
+
+## License
+
+MIT — see [`LICENSE`](LICENSE). The published tools this code drives (HiC-Pro, juicer_tools,
+TopDom, FitHiChIP, HiCRep, scHiCTools, BEDTools) carry their own licenses; please cite them
+as their authors request.
