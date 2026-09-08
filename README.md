@@ -72,7 +72,7 @@ All coordinates are **hg19 / GRCh37**.
 | Tool | Version | Use |
 |---|---|---|
 | HiC-Pro | 3.1.0 | Hi-C alignment / valid pairs |
-| bwa + pairtools + cooler + pairix | — | 4DN-style Hi-C alignment (see `NOTES`) |
+| bwa + pairtools + cooler + pairix | — | 4DN-style Hi-C alignment (see `00_hic_processing/README.md`) |
 | juicer_tools | 1.11.04 | `.hic` build and `dump` |
 | hicstraw | — | `.hic` → locus-pair bed |
 | TopDom | 0.0.2 | TAD calling (source inlined in `02_tads/02_run_TopDom.R`) |
