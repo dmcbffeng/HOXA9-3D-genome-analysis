@@ -3,10 +3,6 @@
 Wang, Yang, Feng et al. — analysis code for the **Hi-C / 3D genome** analyses in the
 manuscript (Figs. 1–5, figs. S1–S4, tables S1, S2, S4, S8).
 
-Everything here is short, plain Python / R / bash driving well-known published tools.
-Nothing in this repository is a new algorithm; it is the exact parameterisation and glue
-needed to reproduce the reported numbers from the deposited data.
-
 ---
 
 ## What is in scope
