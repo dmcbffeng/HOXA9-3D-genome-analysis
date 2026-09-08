@@ -13,7 +13,9 @@
 # Usage: sbatch -J <SAMPLE>_ds downsample_4dn.sh <SAMPLE> <FRAC> <IN_pairs.gz> <OUTDIR>
 set -eo pipefail
 SAMPLE="$1"; FRAC="$2"; INPAIRS="$3"; OUT="$4"; CPU=20; SEED=1
-CHROM=/home/fanfeng/HiCPro/envs3/HiC-Pro_3.1.0/annotation/chrom_hg19.sizes
+# hg19 chrom.sizes, 2 columns (chr1-22, X, Y, M). A copy ships alongside this
+# script as hg19.chrom.sizes -- point CHROM at it, or export CHROM to override.
+CHROM="${CHROM:-/path/to/hg19.chrom.sizes}"
 JUICER_JAR=/nfs/turbo/umms-drjieliu/juicer_tools_1.11.04_jcuda.0.8.jar
 W=/scratch/drjieliu_root/drjieliu/fanfeng/temp/${SAMPLE}_ds
 source /home/fanfeng/anaconda3/etc/profile.d/conda.sh

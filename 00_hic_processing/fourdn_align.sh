@@ -21,7 +21,9 @@ SRC=/nfs/turbo/umms-drjieliu/usr/temp_Fan/AML_Analysis/HiC/O3_24h/01.RawData/DW_
 R1="$SRC/DW_HiC_24h_CKDL260012172-1A_23JK7LLT3_L5_1.fq.gz"
 R2="$SRC/DW_HiC_24h_CKDL260012172-1A_23JK7LLT3_L5_2.fq.gz"
 IDX=/nfs/turbo/umms-drjieliu/proj/4dn/data/bulkHiC/MOLM13/bwaindex/hg19
-CHROM=/home/fanfeng/HiCPro/envs3/HiC-Pro_3.1.0/annotation/chrom_hg19.sizes
+# hg19 chrom.sizes, 2 columns (chr1-22, X, Y, M). A copy ships alongside this
+# script as hg19.chrom.sizes -- point CHROM at it, or export CHROM to override.
+CHROM="${CHROM:-/path/to/hg19.chrom.sizes}"
 JUICER_JAR=/nfs/turbo/umms-drjieliu/juicer_tools_1.11.04_jcuda.0.8.jar
 W=/scratch/drjieliu_root/drjieliu/fanfeng/temp/O3_24h_4DN/full
 RES=/nfs/turbo/umms-drjieliu/usr/temp_Fan/AML_Analysis/HiC/O3_24h/04.4DN_alignment

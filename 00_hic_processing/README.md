@@ -1,26 +1,40 @@
-# Hi-C processing
+# Hi-C processing (4DN pipeline)
 
 Methods §"Hi-C library preparation, Hi-C data processing and embedding in 2D/3D space".
 Upstream of every other directory. QC metrics from these runs are table S8.
 
+Hi-C reads are aligned with the 4DN DCIC processing pipeline
+(https://github.com/4dn-dcic/docker-4dn-hic), run locally rather than through CWL:
+
+    bwa mem -SP5M  ->  pairtools parse  ->  sort  ->  dedup  ->  select valid
+                   ->  cooler (.mcool, balanced)  and  juicer pre (.hic)
+
+`bwa mem -SP5M` is the 4DN setting for Hi-C: `-S`/`-P` skip mate rescue and pairing so each
+side is placed independently, and `-5M` picks the 5'-most alignment as primary so chimeric
+reads spanning a ligation junction are assigned to the correct fragment end. Chimera
+handling therefore happens at the alignment step, and no restriction-fragment file or
+ligation-junction sequence is required.
+
 | Script | What it does |
 |---|---|
-| `hicpro_align.sh` + `config-hicpro.txt` | HiC-Pro 3.1.0, hg19, MboI/DpnII (`GATC`, junction `GATCGATC`), 20 CPUs. Produces `allValidPairs`, then `hicpro2juicebox.sh` → `.hic`. This is the pipeline used for the OCI-AML3, OCI-AML3-HOXA9-KO, HSPC and AML4943 maps. |
-| `fourdn_align.sh` | 4DN-style alternative: `bwa mem -SP5M` → `pairtools parse` (`--min-mapq 10 --walks-policy 5unique`) → sort → dedup → select `UU/UR/RU` → `cooler zoomify` (balanced `.mcool`) → `juicer pre` (`.hic`). Used for the 24 h dTAG-13 library — see the note below. |
-| `merge_4dn.sh` | Merge deduplicated valid-pairs across libraries of the *same* biological sample, re-dedup across libraries, rebuild one `.hic`. Produced the merged HOXA9-KO (348M valid pairs) and 24 h dTAG-13 (595M) maps. |
+| `fourdn_align.sh` | FASTQ → `.hic`/`.mcool` for one library. `bwa mem -SP5M` → `pairtools parse` (`--min-mapq 10 --max-inter-align-gap 30 --walks-policy 5unique`) → `pairtools sort` → `pairtools dedup` → `pairtools select` keeping `UU`/`UR`/`RU` pairs → `cooler cload` at 1 kb + `cooler zoomify --balance` (multi-resolution balanced `.mcool`) → `juicer pre` (`.hic`). |
+| `merge_4dn.sh` | Merge deduplicated valid-pairs across libraries of the *same* biological sample, re-dedup across libraries so cross-library PCR duplicates are removed, rebuild one `.hic`. Produced the merged HOXA9-KO (348M valid pairs) and 24 h dTAG-13 (595M valid pairs) maps. |
 | `downsample_4dn.sh` | `pairtools sample` at a fixed fraction and seed, then the same `.hic` build as `merge_4dn.sh`, so the downsampled map is directly comparable. Used to match dTAG-13 depth to OCI-AML3 WT as a control for the loop and APA comparisons. |
-| `hic2cool.py` | `.hic` -> per-chromosome `.cool` at 50 kb via HiCExplorer `hicConvertFormat`. Input step for `hicrep_scc.py`. |
-| `hicrep_scc.py` | Pairwise HiCRep stratum-adjusted correlation between contact maps (dejunlin/hicrep), per chromosome, `h = 1`, `dBPMax = 2 Mb`. Writes one `chr*.csv` similarity matrix per chromosome. As run, this covered the OCI-AML3 / HSPC maps together with the published primary-AML and HSPC cohort maps used for the AML-specific TAD comparison in fig. S1B. Distances from these matrices were embedded with scHiCTools (`liu-bioinfo-lab/scHiCTools`). |
+| `hic2cool.py` | `.hic` → per-chromosome `.cool` at 50 kb via HiCExplorer `hicConvertFormat`. Input step for `hicrep_scc.py`. |
+| `hicrep_scc.py` | Pairwise HiCRep stratum-adjusted correlation between contact maps (dejunlin/hicrep), per chromosome, `h = 1`, `dBPMax = 2 Mb`. Writes one `chr*.csv` similarity matrix per chromosome. Distances from these matrices were embedded with scHiCTools (`liu-bioinfo-lab/scHiCTools`). |
+| `hg19.chrom.sizes` | hg19 primary chromosomes (chr1–22, X, Y, M), used by `pairtools parse`, `cooler` and `juicer pre`. Set `CHROM` in the three shell scripts to its path. |
 
-Both alignment scripts stage large intermediates on node-local scratch and copy only the
-final valid-pairs / `.mcool` / `.hic` back. Edit the path constants at the top before use.
+All three shell scripts stage large intermediates on node-local scratch and copy only the
+final valid-pairs / `.mcool` / `.hic` back. Edit the path constants at the top (`R1`, `R2`,
+`IDX`, `CHROM`, `JUICER_JAR`, `W`, `RES`) before use.
 
-## Why two alignment pipelines
+## Scope
 
-The OCI-AML3, OCI-AML3-HOXA9-KO, CD34+ HSPC and AML4943 maps were produced with HiC-Pro.
-The 24 h dTAG-13 library, and the merged HOXA9-KO map, were produced with the 4DN pipeline
-instead: HiC-Pro's end-to-end bowtie2 step reports ~0.11% valid pairs on that library, which
-is an artifact of end-to-end mapping on it and not a bad library — the same FASTQs give ~76%
-valid pairs through `bwa mem -SP5M` + pairtools. Both pipelines write hg19 `.hic` files that
-are used interchangeably downstream, and every downstream analysis here is O/E-normalised,
-so the two are directly comparable.
+These scripts cover the contact maps aligned for this study. Maps produced earlier by other
+members of the lab were aligned with their own scripts, which are not part of this
+repository — see the top-level `README.md`.
+
+The FitHiChIP entry point in `../03_loops/` is named `FitHiChIP_HiCPro.sh` and its config
+files carry upstream comments referring to HiC-Pro inputs. That is FitHiChIP's own naming
+for its generic driver; the runs here supply contact data through the `Bed=` and `HIC=`
+options, not through HiC-Pro output.

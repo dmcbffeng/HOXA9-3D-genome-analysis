@@ -9,7 +9,7 @@ manuscript (Figs. 1–5, figs. S1–S4, tables S1, S2, S4, S8).
 
 | Directory | Analysis | Manuscript |
 |---|---|---|
-| `00_hic_processing/` | Hi-C read alignment, valid-pair generation, library merging/downsampling, HiCRep similarity | Methods "Hi-C data processing"; table S8 |
+| `00_hic_processing/` | Hi-C read alignment (4DN pipeline), valid-pair generation, library merging/downsampling, HiCRep similarity | Methods "Hi-C data processing"; table S8 |
 | `01_compartments/` | A/B compartments (O/E → Pearson → PCA, sign fixed by H3K27ac) at 500 kb | fig. S1A; table S1 |
 | `02_tads/` | TopDom TAD calling at 50 kb from `.hic` | Fig. 1A–C; figs. S1C, S1G, S4C; table S2 |
 | `03_loops/` | FitHiChIP HOXA9-anchored loop calling; anchor annotation; random-loop background | Fig. 2A, C–E; Fig. 5C; fig. S3; table S4 |
@@ -37,6 +37,9 @@ shifted was done by a co-author (see below).
 These analyses were performed by other authors and are not in this repository. All of them
 use standard published tools whose parameters are already stated in the Methods:
 
+- **Alignment of the OCI-AML3 and CD34+ HSPC contact maps**, which were produced earlier by
+  another member of the lab with their own scripts. `00_hic_processing/` covers the maps
+  aligned for this study.
 - CUT&RUN and ChIP-seq processing and peak calling (Trim Galore, Bowtie2, Picard, MACS2,
   HOMER, deepTools) — Figs. 2C, 3A, 5A, figs. S2, S4B
 - RNA-seq processing and differential expression (Trim Galore, TopHat2, Cuffdiff) —
@@ -67,8 +70,7 @@ All coordinates are **hg19 / GRCh37**.
 
 | Tool | Version | Use |
 |---|---|---|
-| HiC-Pro | 3.1.0 | Hi-C alignment / valid pairs |
-| bwa + pairtools + cooler + pairix | — | 4DN-style Hi-C alignment (see `00_hic_processing/README.md`) |
+| bwa + pairtools + cooler + pairix | — | Hi-C alignment, 4DN DCIC pipeline (see `00_hic_processing/README.md`) |
 | juicer_tools | 1.11.04 | `.hic` build and `dump` |
 | hicstraw | — | `.hic` → locus-pair bed |
 | TopDom | 0.0.2 | TAD calling (source inlined in `02_tads/02_run_TopDom.R`) |
@@ -87,10 +89,11 @@ inputs of every reported number are unambiguous. To re-run elsewhere, edit the p
 constants at the top of each script (they are all grouped there) and point them at the
 GEO/Zenodo downloads.
 
-`.hic` files are not redistributed here; `hg19.chrom.sizes` is available from UCSC.
+`.hic` files are not redistributed here. The hg19 chrom.sizes used by the alignment scripts
+ships as `00_hic_processing/hg19.chrom.sizes` (primary chromosomes only).
 
 ## License
 
-MIT — see [`LICENSE`](LICENSE). The published tools this code drives (HiC-Pro, juicer_tools,
-TopDom, FitHiChIP, HiCRep, scHiCTools, BEDTools) carry their own licenses; please cite them
-as their authors request.
+MIT — see [`LICENSE`](LICENSE). The published tools this code drives (bwa, pairtools,
+cooler, juicer_tools, TopDom, FitHiChIP, HiCRep, scHiCTools, BEDTools) carry their own
+licenses; please cite them as their authors request.
