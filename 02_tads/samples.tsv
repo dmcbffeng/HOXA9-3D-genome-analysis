@@ -1,0 +1,12 @@
+# sample_name<TAB>hic_path
+# Add new lines to extend the pipeline to additional cell lines / patients.
+# Lines beginning with '#' and blank lines are ignored.
+4943	/nfs/turbo/umms-drjieliu/proj/4dn/data/bulkHiC/haley_HSPC_hic/4943.hic
+HSPC	/nfs/turbo/umms-drjieliu/proj/4dn/data/bulkHiC/haley_HSPC_hic/HSPC_downsample_allValidPairs.hic
+OCI-AML3	/nfs/turbo/umms-drjieliu/proj/4dn/data/bulkHiC/haley_HSPC_hic/O3.hic
+OCI-AML3-HOXA9KO	/nfs/turbo/umms-drjieliu/proj/4dn/data/bulkHiC/haley_HSPC_hic/O3_HOXA9KO.allValidPairs.hic
+MOLM13	/nfs/turbo/umms-drjieliu/proj/4dn/data/bulkHiC/MOLM13/MOLM13.allValidPairs.hic
+O3_24h	/nfs/turbo/umms-drjieliu/usr/temp_Fan/AML_Analysis/HiC/O3_24h/04.4DN_alignment/results/DW_HiC_24h.hic
+O3_24h_dTAG13_merged	/nfs/turbo/umms-drjieliu/usr/temp_Fan/AML_Analysis/HiC/O3_4DN_merged/O3_24h_dTAG13/O3_24h_dTAG13.hic
+O3_HOXA9KO_merged	/nfs/turbo/umms-drjieliu/usr/temp_Fan/AML_Analysis/HiC/O3_4DN_merged/O3_HOXA9KO/O3_HOXA9KO.hic
+O3_24h_dTAG13_dsWT	/nfs/turbo/umms-drjieliu/usr/temp_Fan/AML_Analysis/HiC/O3_4DN_downsampled_O3WT/O3_24h_dTAG13_dsWT/O3_24h_dTAG13_dsWT.hic

@@ -1,0 +1,34 @@
+#====================================
+# FitHiChIP config - O3_HOXA9KO_HOXA9
+# 10Kb resolution, FDR 0.05, Peak2All (IntType=3), FitHiChIP(L+M)
+# Contact map: O3_HOXA9KO.hic (4DN merged, hg19) -- used directly via HIC=
+# ChrSizeFile is a PRIVATE per-run copy: FitHiChIP's HIC= path overwrites it
+# with a chrom list derived from the .hic, so it must NOT be the shared file.
+# HOXA9 peaks: O3_HOXA9_HA_overlap_peaks_IgGcorr.bed (2331 peaks)
+#====================================
+
+ValidPairs=
+Interval=
+Matrix=
+Bed=
+HIC=/nfs/turbo/umms-drjieliu/usr/temp_Fan/AML_Analysis/HiC/O3_4DN_merged/O3_HOXA9KO/O3_HOXA9KO.hic
+COOL=
+
+ChrSizeFile=/nfs/turbo/umms-drjieliu/usr/temp_Fan/AML_Analysis/FitHiChIP_202608_newO3/O3_HOXA9KO_chrom.sizes
+
+PeakFile=/nfs/turbo/umms-drjieliu/usr/temp_Fan/AML_Analysis/FitHiChIP_202608_newO3/peaks/HOXA9_peaks.bed
+
+OutDir=/nfs/turbo/umms-drjieliu/usr/temp_Fan/AML_Analysis/FitHiChIP_202608_newO3/O3_HOXA9KO_HOXA9_10000_0.05/
+
+CircularGenome=0
+
+IntType=3
+BINSIZE=10000
+LowDistThr=20000
+UppDistThr=3000000
+UseP2PBackgrnd=0
+BiasType=1
+MergeInt=1
+QVALUE=0.05
+PREFIX=FitHiChIP
+OverWrite=1

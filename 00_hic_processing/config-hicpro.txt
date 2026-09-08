@@ -1,0 +1,89 @@
+# HiC-Pro config for O3_24h (DW_HiC_24h) - hg19, MboI/DpnII
+# Enzyme determined empirically: GATCGATC junction in ~38% of reads (HindIII absent)
+
+#########################################################################
+## Paths and Settings  - Do not edit !
+#########################################################################
+TMP_DIR = tmp
+LOGS_DIR = logs
+BOWTIE2_OUTPUT_DIR = bowtie_results
+MAPC_OUTPUT = hic_results
+RAW_DIR = rawdata
+
+#######################################################################
+## SYSTEM AND SCHEDULER - Start Editing Here !!
+#######################################################################
+N_CPU = 20
+SORT_RAM = 4000M
+LOGFILE = hicpro.log
+
+JOB_NAME = O3_24h
+JOB_MEM = 6000M
+JOB_WALLTIME = 96:00:00
+JOB_QUEUE = drjieliu-v100
+JOB_MAIL = fanfeng@umich.edu
+
+#########################################################################
+## Data
+#########################################################################
+PAIR1_EXT = _R1
+PAIR2_EXT = _R2
+
+#######################################################################
+## Alignment options
+#######################################################################
+MIN_MAPQ = 10
+BOWTIE2_IDX_PATH = /nfs/turbo/umms-drjieliu/proj/4dn/data/bulkHiC/MOLM13/bowtie2index/
+BOWTIE2_GLOBAL_OPTIONS = --very-sensitive -L 30 --score-min L,-0.6,-0.2 --end-to-end --reorder
+BOWTIE2_LOCAL_OPTIONS =  --very-sensitive -L 20 --score-min L,-0.6,-0.2 --end-to-end --reorder
+
+#######################################################################
+## Annotation files
+#######################################################################
+REFERENCE_GENOME = hg19
+GENOME_SIZE = /home/fanfeng/HiCPro/envs3/HiC-Pro_3.1.0/annotation/chrom_hg19.sizes
+
+#######################################################################
+## Allele specific analysis
+#######################################################################
+ALLELE_SPECIFIC_SNP =
+
+#######################################################################
+## Capture Hi-C analysis
+#######################################################################
+CAPTURE_TARGET =
+REPORT_CAPTURE_REPORTER = 1
+
+#######################################################################
+## Digestion Hi-C
+#######################################################################
+GENOME_FRAGMENT = /nfs/turbo/umms-drjieliu/usr/temp_Fan/HiCPro/MOLM13/hg19_MboI.bed
+LIGATION_SITE = GATCGATC
+MIN_FRAG_SIZE =
+MAX_FRAG_SIZE =
+MIN_INSERT_SIZE =
+MAX_INSERT_SIZE =
+
+#######################################################################
+## Hi-C processing
+#######################################################################
+MIN_CIS_DIST =
+GET_ALL_INTERACTION_CLASSES = 1
+GET_PROCESS_SAM = 0
+RM_SINGLETON = 1
+RM_MULTI = 1
+RM_DUP = 1
+
+#######################################################################
+## Contact Maps
+#######################################################################
+BIN_SIZE = 5000 10000 20000 40000 150000 500000 1000000
+MATRIX_FORMAT = upper
+
+#######################################################################
+## Normalization
+#######################################################################
+MAX_ITER = 100
+FILTER_LOW_COUNT_PERC = 0.02
+FILTER_HIGH_COUNT_PERC = 0
+EPS = 0.1

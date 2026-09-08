@@ -1,0 +1,36 @@
+#====================================
+# FitHiChIP config - O3_24h_dTAG13_dsWT_HOXA9  (DOWNSAMPLED to O3-WT callable-band depth)
+# 10Kb resolution, FDR 0.05, Peak2All (IntType=3), FitHiChIP(L+M)
+# Contact map: O3_24h_dTAG13_dsWT.hic  = full dTAG map uniformly downsampled by
+#   frac=0.5490 (pairtools sample, seed 1) so its 10kb cis contacts in the
+#   20kb-3Mb band == O3-WT (131.8M). Rebuilt with the identical juicer-pre recipe.
+# ChrSizeFile is a PRIVATE per-run copy (HIC= path overwrites it).
+# HOXA9 peaks: O3_HOXA9_HA_overlap_peaks_IgGcorr.bed (2331 peaks)
+# IDENTICAL parameters to FitHiChIP_202608_newO3 and the WT 5824-loop reference.
+#====================================
+
+ValidPairs=
+Interval=
+Matrix=
+Bed=
+HIC=/nfs/turbo/umms-drjieliu/usr/temp_Fan/AML_Analysis/HiC/O3_4DN_downsampled_O3WT/O3_24h_dTAG13_dsWT/O3_24h_dTAG13_dsWT.hic
+COOL=
+
+ChrSizeFile=/nfs/turbo/umms-drjieliu/usr/temp_Fan/AML_Analysis/FitHiChIP_202608_newO3_dsWT/O3_24h_dTAG13_dsWT_chrom.sizes
+
+PeakFile=/nfs/turbo/umms-drjieliu/usr/temp_Fan/AML_Analysis/FitHiChIP_202608_newO3/peaks/HOXA9_peaks.bed
+
+OutDir=/nfs/turbo/umms-drjieliu/usr/temp_Fan/AML_Analysis/FitHiChIP_202608_newO3_dsWT/O3_24h_dTAG13_dsWT_HOXA9_10000_0.05/
+
+CircularGenome=0
+
+IntType=3
+BINSIZE=10000
+LowDistThr=20000
+UppDistThr=3000000
+UseP2PBackgrnd=0
+BiasType=1
+MergeInt=1
+QVALUE=0.05
+PREFIX=FitHiChIP
+OverWrite=1

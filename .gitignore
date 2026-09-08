@@ -1,0 +1,18 @@
+# analysis outputs -- regenerate with the scripts, do not commit
+temp_matrix/
+results/
+merged/
+logs/
+00_bg_vectors/
+01_AB_vec/
+02_AB_fig/
+*.hic
+*.cool
+*.mcool
+*.pairs.gz
+*.npy
+*.bed
+!02_tads/samples.tsv
+slurm-*.out
+*.log
+__pycache__/
