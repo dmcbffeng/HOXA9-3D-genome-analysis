@@ -19,9 +19,9 @@ manuscript (Figs. 1–5, figs. S1–S4, tables S1, S2, S4, S8).
 Each directory has its own README giving the exact parameters, the panels it produces, and
 the numbers it should reproduce.
 
-Note the split of labour on the TAD panels: this repository produces the TopDom TAD and
-boundary calls; the downstream classification of each TAD as unchanged / fused / split /
-shifted was done by a co-author (see below).
+One scope note on the TAD panels: this repository produces the TopDom TAD and boundary
+calls. The downstream classification of each TAD as unchanged / fused / split / shifted
+is not included here.
 
 ### Key reported numbers and where they come from
 
@@ -31,29 +31,6 @@ shifted was done by a co-author (see below).
 | 13,041 AML4943 HOXA9 loops | `03_loops/configs/configfile_AML4943_HOXA9_10000_0.05` |
 | APA centre enrichment 4.18 (OCI-AML3) / 2.22 (HSPC) | `04_apa/APA_summary.csv` |
 | TopDom domain counts (OCI-AML3 3,180; HSPC 2,798; HOXA9-KO 3,064; dTAG-13 3,171) | `02_tads/` merged BEDs, rows where column 4 is `domain` |
-
-## What is **not** in scope
-
-These analyses were performed by other authors and are not in this repository. All of them
-use standard published tools whose parameters are already stated in the Methods:
-
-- **Alignment of the OCI-AML3 and CD34+ HSPC contact maps**, which were produced earlier by
-  another member of the lab with their own scripts. `00_hic_processing/` covers the maps
-  aligned for this study.
-- CUT&RUN and ChIP-seq processing and peak calling (Trim Galore, Bowtie2, Picard, MACS2,
-  HOMER, deepTools) — Figs. 2C, 3A, 5A, figs. S2, S4B
-- RNA-seq processing and differential expression (Trim Galore, TopHat2, Cuffdiff) —
-  Fig. 6A–B, Fig. 7F, tables S5, S6
-- **Classification of TAD changes into fused / split / shifted** (BEDTools `windowBed` on the
-  TopDom boundary calls produced by `02_tads/`) — Fig. 1B–G, fig. S1D, fig. S3C, fig. S4D
-- E-P / E-E / E-S loop classification from histone-mark enrichment — Fig. 2C–D
-- Motif enrichment and CTCF orientation calls — Fig. 2F–G, Fig. 5D, fig. S3B
-- GO enrichment — Figs. 6C, 6E, 7F
-- TCGA / BEAT AML expression correlation — Fig. 6F, fig. S6
-- All wet-lab quantification — Fig. 7, fig. S5A, fig. S7
-
-If Science Advances wants a single repository covering the whole paper, the co-authors
-responsible for those sections need to contribute their scripts alongside these.
 
 ## Data
 

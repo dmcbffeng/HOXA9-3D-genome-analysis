@@ -30,9 +30,8 @@ final valid-pairs / `.mcool` / `.hic` back. Edit the path constants at the top (
 
 ## Scope
 
-These scripts cover the contact maps aligned for this study. Maps produced earlier by other
-members of the lab were aligned with their own scripts, which are not part of this
-repository — see the top-level `README.md`.
+These scripts cover the contact maps aligned for this study. Contact maps generated earlier
+and reused here were aligned separately and are not reproduced by this pipeline.
 
 The FitHiChIP entry point in `../03_loops/` is named `FitHiChIP_HiCPro.sh` and its config
 files carry upstream comments referring to HiC-Pro inputs. That is FitHiChIP's own naming

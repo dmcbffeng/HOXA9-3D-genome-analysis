@@ -45,5 +45,5 @@ input is used, which can clobber a chrom.sizes file shared between runs. Where t
 the `.hic` was dumped to a 7-column bed with `dump_hic_to_bed.py` and passed via `Bed=`
 instead. Both forms appear in the configs.
 
-**Downstream, not here:** E-P / E-E / E-S classification from H3K4me3 / H3K4me1 / H3K27ac /
-H3K27me3 enrichment, motif enrichment, and CTCF orientation calls were done by a co-author.
+**Not included here:** E-P / E-E / E-S classification from H3K4me3 / H3K4me1 / H3K27ac /
+H3K27me3 enrichment, motif enrichment, and CTCF orientation calls.

@@ -21,6 +21,5 @@ are exact multiples of 60. Using `oe` makes that factor cancel within each dista
 stratum, so no rescaling is needed. If you switch this pipeline to `observed NONE` or
 `observed KR`, divide those two maps by 60 first.
 
-**Downstream, not here:** classifying each TAD as unchanged / fused / split / shifted
-(BEDTools `windowBed` on the boundary calls) was done by a co-author — see
-`../README.md`.
+**Not included here:** classifying each TAD as unchanged / fused / split / shifted
+(BEDTools `windowBed` on the boundary calls this pipeline produces).
