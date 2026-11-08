@@ -1,0 +1,20 @@
+{
+  "title": "HOXA9-3D-genome-analysis",
+  "upload_type": "software",
+  "creators": [
+    {
+      "name": "Feng, Fan"
+    }
+  ],
+  "version": "v1.0.0",
+  "license": "mit",
+  "access_right": "open",
+  "keywords": [
+    "HOXA9",
+    "Hi-C",
+    "3D genome",
+    "chromatin architecture",
+    "leukemia"
+  ],
+  "description": "<p>Analysis code developed by Fan Feng for the Hi-C and 3D genome analyses accompanying the manuscript cited below. Includes Hi-C processing, A/B compartment analysis, TopDom TAD calling, chromatin loop analysis, aggregate peak analysis, and insulation analysis.</p><p><strong>Associated manuscript:</strong> Wang, X. Q. D.*, Yang, W.*, Feng, F.*, Shum, M., Bell, O., Liu, J., Zhang, X., &amp; Dou, Y. (2026). HOXA9 reinforces chromatin boundary insulation to maintain leukemia associated genome architecture. <em>Science Advances</em>, accepted; publication pending. *These authors contributed equally (co-first authors).</p><p>Input datasets are not included; accessions and data links are documented in the repository README. Coordinates use hg19 / GRCh37. Scripts retain original execution paths that must be adapted to the local computing environment. Downstream classification of TADs as unchanged, fused, split, or shifted is not included. Third-party software retains its respective licenses.</p>"
+}
